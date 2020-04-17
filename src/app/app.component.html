@@ -1,4 +1,9 @@
-<hello name="{{ name }}"></hello>
+<hello name="HANGMAN"></hello>
 <p>
-  Start editing to see some magic happen :)
+  <img src={{images[current_image]}}>
 </p>
+<h1> _ A _ B_ _ _ _</h1>
+Choose the letter:
+<div>
+<button style="width:25px;height:25px;margin:5px" *ngFor="let i of letters" (click)="inc_current_image(i)">{{i}}</button>
+</div>
