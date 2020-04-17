@@ -17,13 +17,33 @@ export class AppComponent  {
     "https://github.com/mbaczyn/angular-hangman/blob/master/src/images/8.jpg?raw=true"
     ];
 
-letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W', 'V', 'X', 'Y', 'Z'];
+const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W', 'V', 'X', 'Y', 'Z'];
 
 current_image : number = 3;
 
-inc_current_image(item)
+SearchedWord = "RINGBELLI";
+CurrentGuessedWord = "________";
+
+public PrintCurrentGuessedWord() :string {
+
+  var ReturnValue :string = "";
+  for(let i of this.CurrentGuessedWord) ReturnValue = ReturnValue + " " + i;
+  return ReturnValue;
+}
+
+
+onLetterClick(ClikedLetter)
 {
-  this.current_image++
-  console.log("Item: ",item);
+  var NewCurrentGuessedWord :string = "";
+  for(var i in this.SearchedWord)
+    if(this.SearchedWord[i]==this.CurrentGuessedWord[i] || ClikedLetter == this.SearchedWord[i]) NewCurrentGuessedWord=NewCurrentGuessedWord+this.SearchedWord[i];
+        else NewCurrentGuessedWord = NewCurrentGuessedWord + "_";
+    
+  
+  this.CurrentGuessedWord = NewCurrentGuessedWord;
+  //console.log("Letter: ",ClikedLetter);
+  //this.current_image++
   }
+  
+
 }
