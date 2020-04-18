@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {
+export class AppComponent implements OnInit {
     
   const images = [
     "https://github.com/mbaczyn/angular-hangman/blob/master/src/images/1.jpg?raw=true","https://github.com/mbaczyn/angular-hangman/blob/master/src/images/2.jpg?raw=true",
@@ -18,11 +18,16 @@ export class AppComponent  {
     ];
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W', 'V', 'X', 'Y', 'Z'];
+const MaxGuessNumber : number = 7;
+GuessNumber : number = -1;
 
-current_image : number = 3;
+SearchedWord : string = "RINGBELLI";
+CurrentGuessedWord : string = "";
+MessageForUser : string = "";
 
-SearchedWord = "RINGBELLI";
-CurrentGuessedWord = "________";
+ngOnInit(){
+  this.onLetterClick();
+}
 
 public PrintCurrentGuessedWord() :string {
 
@@ -35,15 +40,26 @@ public PrintCurrentGuessedWord() :string {
 onLetterClick(ClikedLetter)
 {
   var NewCurrentGuessedWord :string = "";
-  for(var i in this.SearchedWord)
-    if(this.SearchedWord[i]==this.CurrentGuessedWord[i] || ClikedLetter == this.SearchedWord[i]) NewCurrentGuessedWord=NewCurrentGuessedWord+this.SearchedWord[i];
+  var Guessed :boolean = false;
+
+  for(var i in this.SearchedWord) {
+    if(ClikedLetter == this.SearchedWord[i]) { NewCurrentGuessedWord=NewCurrentGuessedWord+ClikedLetter; Guessed = true }
+    else {
+      if(this.SearchedWord[i]==this.CurrentGuessedWord[i]) NewCurrentGuessedWord=NewCurrentGuessedWord+this.SearchedWord[i];
         else NewCurrentGuessedWord = NewCurrentGuessedWord + "_";
-    
-  
-  this.CurrentGuessedWord = NewCurrentGuessedWord;
-  //console.log("Letter: ",ClikedLetter);
-  //this.current_image++
+    }
   }
+
+  this.CurrentGuessedWord = NewCurrentGuessedWord;
+  if(Guessed==false && this.GuessNumber<this.MaxGuessNumber) this.GuessNumber++;
+    
+    if(this.CurrentGuessedWord==this.SearchedWord) this.MessageForUser = "!!! C O N G R A T U L A T I O N S !!!   You are the winner !!!";
+       else if(this.GuessNumber==this.MaxGuessNumber) this.MessageForUser = "You are dead !!! Game over !!! It was easy word to guess: "+this.SearchedWord;
   
+  console.log("GuessNumber, Max",this.GuessNumber, this.MaxGuessNumber);
+  
+}
+
+
 
 }

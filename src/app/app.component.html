@@ -1,11 +1,12 @@
 <hello name="HANGMAN"></hello>
 <p>
-  <img src={{images[current_image]}}>
+  <img src={{images[GuessNumber]}}>
 </p>
 Word to guess:
-<h1 style="font-family: Times New Roman, Times, serif;"> {{ PrintCurrentGuessedWord() }} </h1>
+<h1 style="font-family:'Courier New'"> {{ PrintCurrentGuessedWord() }} </h1>
 Choose a letter :
 <p></p>
 <div>
 <button style="width:25px;height:25px;margin:5px" *ngFor="let i of letters" (click)="onLetterClick(i)">{{i}}</button>
 </div>
+<p style="color:red">{{MessageForUser}}</p>
