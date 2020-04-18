@@ -56,7 +56,7 @@ onLetterClick(ClikedLetter)
     if(this.CurrentGuessedWord==this.SearchedWord) this.MessageForUser = "!!! C O N G R A T U L A T I O N S !!!   You are the winner !!!";
        else if(this.GuessNumber==this.MaxGuessNumber) this.MessageForUser = "You are dead !!! Game over !!! It was easy word to guess: "+this.SearchedWord;
   
-  console.log("GuessNumber, Max",this.GuessNumber, this.MaxGuessNumber);
+  //console.log("GuessNumber, Max",this.GuessNumber, this.MaxGuessNumber);
   
 }
 
