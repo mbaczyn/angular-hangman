@@ -2,6 +2,7 @@
   "name": "angular",
   "version": "0.0.0",
   "private": true,
+  "node": "12.16.x",
   "dependencies": {
     "@angular/animations": "9.1.0",
     "@angular/common": "^9.1.0",
